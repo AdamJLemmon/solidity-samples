@@ -2,13 +2,13 @@ pragma solidity ^0.4.6;
 
 // Template contract visualizing style guide and contract layout
 // Note constants methods located at the bottom of each visibility section
-// Checks => Effects => Interactions pattern followed with each method
+// Checks => Effects => Interactions pattern followed within each method
 // Tab = 4 spaces
 
 // import './<path to contract>.sol'
 
 /// @title Styled Contract Layout Template
-/// @author Adam Lemmon - <adam@adamjlemmon.com>
+/// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract TemplateContract {
     /*
     * Constants
@@ -21,7 +21,7 @@ contract TemplateContract {
 	uint public storageUint = 0;
 
     /*
-    * Modifiers,
+    * Modifiers
     */
     modifier templateModifier(uint param) {
         _;
