@@ -143,6 +143,27 @@ contract DemoExamples {
 }
 
 
+contract Test {
+    string private demoString;
+
+		function getStringExternal() external returns(string) {
+			return demoString;
+		}
+}
+
+contract Fail {
+		Test test;
+
+		function Fail() {
+			test = new Test();
+		}
+
+    function getString() returns(string) {
+				string str = test.getStringExternal();
+		}
+}
+
+
 /*
 Dynamic return EX
 */
