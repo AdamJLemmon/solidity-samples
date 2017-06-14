@@ -1,34 +1,57 @@
-struct Balance {
-  address addr;
-  uint256 value;
-}
+pragma solidity ^0.4.9;
 
-Balance balances[];
 
-function refund() {
-  while (i < balances.length) {
-    balances[i].addr.send(balances[i].value);
-    i++;
+/// @title
+/// @author Adam Lemmon <adamjlemmon@gmail.com>
+contract BlockGasDOS {
+  /**
+  * Storage
+  */
+  struct Balance {
+    address addr;
+    uint256 value;
   }
-  nextRefundIndex = i;
-}
 
+  Balance[] balances;
+  uint256 nextRefundIndex; // FIX
 
-struct Balance {
-  address addr;
-  uint256 value;
-}
-
-Balance balances[];
-uint256 nextRefundIndex;
-
-function refund() {
-  uint256 i = nextRefundIndex;
-  while (i < balances.length && msg.gas > 200000) {
-    balances[i].addr.send(balances[i].value);
-    i++;
+  /**
+  * External
+  */
+  function itertionRefund() external {
+    uint8 i = 0;
+    while (i < balances.length) {
+      balances[i].addr.send(balances[i].value);
+      i++;
+    }
+    nextRefundIndex = i;
   }
-  nextRefundIndex = i;
+
+  function safeIterationRefund() external {
+    uint256 i = nextRefundIndex;
+    while (i < balances.length && msg.gas > 200000) {
+      balances[i].addr.send(balances[i].value);
+      i++;
+    }
+    nextRefundIndex = i;
+  }
+
+  function singleRefund(uint index) external {
+    uint amount = balances[index].value;
+    balances[index].value = 0;
+
+    if (!balances[index].addr.send(amount)) {
+      throw;
+    }
+  }
+
+  function getRefundLength()
+    external
+    constant
+    returns(uint)
+  {
+      return balances.length;
+  }
 }
 
 
