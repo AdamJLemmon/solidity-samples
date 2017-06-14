@@ -9,24 +9,24 @@ pragma solidity ^0.4.6;
 /// @title Styled Contract Layout Template
 /// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract TemplateContract {
-	/*
+	/**
 	* Constants
 	*/
 	uint constant CONSTANT = 0;
 
-	/*
+	/**
 	* Storage
 	*/
 	uint public storageUint = 0;
 
-	/*
+	/**
 	* Modifiers
 	*/
 	modifier templateModifier(uint param) {
 		_;
 	}
 
-	/*
+	/**
 	* Events
 	*/
 	event LogTemplateEvent(uint param);
@@ -40,7 +40,7 @@ contract TemplateContract {
 	/// @dev Contract fallback
 	function () payable { }
 
-	/*
+	/**
 	* External
 	*/
 	/// @dev Template example with several modifiers
@@ -55,7 +55,7 @@ contract TemplateContract {
 		_param = param;
 	}
 
-	/*
+	/**
 	* Public
 	*/
 	/// @dev Template example with several params and if statement
@@ -81,11 +81,11 @@ contract TemplateContract {
 		}
 	}
 
-	/*
+	/**
 	* Internal
 	*/
 
-	/*
+	/**
 	* Private
 	*/
 }
