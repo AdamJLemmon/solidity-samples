@@ -1,7 +1,7 @@
 pragma solidity ^0.4.6;
 
 // Template contract visualizing style guide and contract layout
-// Note constants methods located at the bottom of each visibility section
+// Note visibility => payable => write => constant
 // Checks => Effects => Interactions pattern followed within each method
 
 // import './<path to contract>.sol'
@@ -12,7 +12,7 @@ contract TemplateContract {
 	/**
 	* Constants
 	*/
-	uint constant CONSTANT = 0;
+	uint public constant CONSTANT = 0;
 
 	/**
 	* Storage
@@ -48,8 +48,8 @@ contract TemplateContract {
 	/// @param param ...description
 	/// @return _param ...desc
 	function templateModifiersFunction(uint param)
-		external
-		templateModifier(param)
+		external // visibility
+		templateModifier(param) // Custom
 		returns (uint _param)
 	{
 		_param = param;
@@ -73,11 +73,11 @@ contract TemplateContract {
 	{
 		// If else styling
 		if(param == param2) {
-
+			_;
 		} else if (param2 == param3) {
-
+			_;
 		} else {
-
+			_;
 		}
 	}
 
