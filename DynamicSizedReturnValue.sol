@@ -1,7 +1,7 @@
 pragma solidity ^0.4.6;
 
 /// @title Strig Return - Fails
-contract ReturnsDynamicVariable {
+contract ReturnsString {
     string private demoString;
 
 		function getStringExternal() external returns(string) {
@@ -9,11 +9,11 @@ contract ReturnsDynamicVariable {
 		}
 }
 
-contract ReceivesDynamicVariable {
-		ReturnsDynamicVariable test;
+contract ReceivesString {
+		ReturnsString test;
 
 		function Fail() {
-			test = new ReturnsDynamicVariable();
+			test = new ReturnsString();
 		}
 
     function getString() returns(string) {
@@ -23,7 +23,7 @@ contract ReceivesDynamicVariable {
 
 
 /// @title Dynamic Array Return - Fails
-contract Test {
+contract ReturnsDynamicArray {
     address[] forms;
 
     function addForm(address form){
@@ -35,10 +35,10 @@ contract Test {
     }
 }
 
-contract Fail {
+contract ReceivesDynamicArray {
 
     function getForms() returns(uint) {
-        Test t = new Test();
+        ReturnsDynamicArray t = new ReturnsDynamicArray();
         t.addForm(address(0x1));
         var forms = t.getForms();
 
