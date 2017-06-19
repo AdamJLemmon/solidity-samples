@@ -73,11 +73,11 @@ contract TemplateContract {
 	{
 		// If else styling
 		if(param == param2) {
-			_;
+
 		} else if (param2 == param3) {
-			_;
+
 		} else {
-			_;
+
 		}
 	}
 

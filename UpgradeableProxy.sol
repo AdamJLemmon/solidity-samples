@@ -6,20 +6,17 @@ pragma solidity ^0.4.6;
 /// @title Ugradeable Contract Proxy
 /// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract UpgradeableProxy {
+	/**
+	* Storage
+	*/
 	address public latest;
 	address public owner;
 	bytes public data;
 
+	/// @dev Contract constructor
 	function UpgradeableProxy(address initialVersion) {
 		latest = initialVersion;
 		owner = msg.sender;
-	}
-
-	/// @dev Update to a new version of the contract
-	/// @param newVersion Address of the new contract
-	function update(address newVersion) {
-		if(msg.sender != owner) throw;
-		latest = newVersion;
 	}
 
 	/// @dev All method requests hit this fallback and are routed
@@ -27,5 +24,15 @@ contract UpgradeableProxy {
 	/// this proxy thus maintaining storage
 	function () {
 		if(!latest.delegatecall(msg.data)) throw;
+	}
+
+	/**
+	* Public
+	*/
+	/// @dev Update to a new version of the contract
+	/// @param newVersion Address of the new contract
+	function update(address newVersion) public {
+		if(msg.sender != owner) throw;
+		latest = newVersion;
 	}
 }

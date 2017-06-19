@@ -3,14 +3,20 @@ pragma solidity ^0.4.6;
 /// @title Circuit Breaker Example
 /// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract CircuitBreaker {
+	/**
+	* Storage
+	*/
 	enum State { active, inactive }
 	State public state = State.active;
 
 	bool private stopped = false;
 	address private owner;
 
+	/**
+	* Public
+	*/
 	/// @dev Toggle the circuit breaker to enable / disable functionality
-  /// @param _state The state to transition to
+	/// @param _state The state to transition to
 	function setState(State _state) public {
 		if(msg.sender != owner) throw;
 		state = _state;

@@ -3,7 +3,9 @@ pragma solidity ^0.4.6;
 /// @title Iterable Mapping Example
 /// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract IterMapping {
-
+	/**
+  * Storage
+  */
 	// Map a key to the index of its value
 	mapping(uint=>uint) public keyToIndexMap;
 	string[] public values;
@@ -11,6 +13,9 @@ contract IterMapping {
 
 	event PublishAllKeyValuePairs(uint key, string value);
 
+	/**
+  * Public
+  */
 	/// @dev Set a key's value by appending key and value to arrays
 	/// and update mapping with new value's index
 	function setKeyValue(uint key, string value) public {

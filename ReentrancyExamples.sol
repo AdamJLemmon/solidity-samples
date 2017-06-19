@@ -3,8 +3,14 @@ pragma solidity ^0.4.6;
 /// @title Reentrancy Examples
 /// @author Adam Lemmon - <adamjlemmon@gmail.com>
 contract ReentrancyExamples {
+	/**
+	* Storage
+	*/
 	mapping (address => uint) private userBalances;
 
+	/**
+	* Public
+	*/
 	/// @dev Insecure transfer from contrct to a recipient
 	/// @param recipient The address to transfer the balance funds
 	function refundBalanceInsecure(address recipient) public {

@@ -20,19 +20,23 @@ contract BlockGasDOS {
   */
   function itertionRefund() external {
     uint8 i = 0;
+
     while (i < balances.length) {
       balances[i].addr.send(balances[i].value);
       i++;
     }
+
     nextRefundIndex = i;
   }
 
   function safeIterationRefund() external {
     uint256 i = nextRefundIndex;
+
     while (i < balances.length && msg.gas > 200000) {
       balances[i].addr.send(balances[i].value);
       i++;
     }
+
     nextRefundIndex = i;
   }
 
@@ -40,17 +44,14 @@ contract BlockGasDOS {
     uint amount = balances[index].value;
     balances[index].value = 0;
 
-    if (!balances[index].addr.send(amount)) {
-      throw;
-    }
+    if (!balances[index].addr.send(amount)) throw;
   }
-
   function getRefundLength()
     external
     constant
     returns(uint)
   {
-      return balances.length;
+    return balances.length;
   }
 }
 
